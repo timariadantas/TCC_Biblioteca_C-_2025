@@ -1,0 +1,17 @@
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Services.deps.json
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Services.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Services.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Domain.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Storage.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Domain.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/bin/Debug/net8.0/Biblioteca.Storage.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.csproj.AssemblyReference.cache
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.GeneratedMSBuildEditorConfig.editorconfig
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.AssemblyInfoInputs.cache
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.AssemblyInfo.cs
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.csproj.CoreCompileInputs.cache
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.csproj.CopyComplete
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/refint/Biblioteca.Services.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/ref/Biblioteca.Services.dll

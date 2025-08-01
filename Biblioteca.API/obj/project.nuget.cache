@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "iA7HpNKZuKoyMiykwLIBPiQscNTC/lqL/h8ja8SGBT6qFvQxd/gYSmt65arVo6glRhhIBRQjy17CB102pM6BEQ==",
+  "success": true,
+  "projectFilePath": "/home/mariadantas/BibliotecaTcc/Biblioteca.API/Biblioteca.API.csproj",
+  "expectedPackageFiles": [
+    "/home/mariadantas/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "/home/mariadantas/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "/home/mariadantas/.nuget/packages/npgsql/9.0.3/npgsql.9.0.3.nupkg.sha512",
+    "/home/mariadantas/.nuget/packages/nulid/1.7.3/nulid.1.7.3.nupkg.sha512"
+  ],
+  "logs": []
+}

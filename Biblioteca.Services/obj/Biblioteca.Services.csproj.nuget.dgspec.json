@@ -1,0 +1,190 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/mariadantas/BibliotecaTcc/Biblioteca.Services/Biblioteca.Services.csproj": {}
+  },
+  "projects": {
+    "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj",
+        "projectName": "Biblioteca.Domain",
+        "projectPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj",
+        "packagesPath": "/home/mariadantas/.nuget/packages/",
+        "outputPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/mariadantas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "NUlid": {
+              "target": "Package",
+              "version": "[1.7.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.117/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/mariadantas/BibliotecaTcc/Biblioteca.Services/Biblioteca.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mariadantas/BibliotecaTcc/Biblioteca.Services/Biblioteca.Services.csproj",
+        "projectName": "Biblioteca.Services",
+        "projectPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Services/Biblioteca.Services.csproj",
+        "packagesPath": "/home/mariadantas/.nuget/packages/",
+        "outputPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/mariadantas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj": {
+                "projectPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj"
+              },
+              "/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/Biblioteca.Storage.csproj": {
+                "projectPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/Biblioteca.Storage.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.117/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/Biblioteca.Storage.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/Biblioteca.Storage.csproj",
+        "projectName": "Biblioteca.Storage",
+        "projectPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/Biblioteca.Storage.csproj",
+        "packagesPath": "/home/mariadantas/.nuget/packages/",
+        "outputPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/mariadantas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj": {
+                "projectPath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.117/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

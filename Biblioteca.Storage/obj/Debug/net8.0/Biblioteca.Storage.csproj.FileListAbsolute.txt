@@ -1,0 +1,15 @@
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/bin/Debug/net8.0/Biblioteca.Storage.deps.json
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/bin/Debug/net8.0/Biblioteca.Storage.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/bin/Debug/net8.0/Biblioteca.Storage.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/bin/Debug/net8.0/Biblioteca.Domain.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/bin/Debug/net8.0/Biblioteca.Domain.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.csproj.AssemblyReference.cache
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.GeneratedMSBuildEditorConfig.editorconfig
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.AssemblyInfoInputs.cache
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.AssemblyInfo.cs
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.csproj.CoreCompileInputs.cache
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.csproj.CopyComplete
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/refint/Biblioteca.Storage.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.pdb
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/ref/Biblioteca.Storage.dll

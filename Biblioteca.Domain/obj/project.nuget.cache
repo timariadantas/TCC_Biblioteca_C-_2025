@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fQCTPBwWSIInbtnWweKZ77YLSZeAmKmRU3Ts6RgcCS+ulxosdvS8XwG1nktEaz5rrpRd6KApPN00aGw+pzXMyQ==",
+  "success": true,
+  "projectFilePath": "/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/Biblioteca.Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/mariadantas/.nuget/packages/nulid/1.7.3/nulid.1.7.3.nupkg.sha512"
+  ],
+  "logs": []
+}
