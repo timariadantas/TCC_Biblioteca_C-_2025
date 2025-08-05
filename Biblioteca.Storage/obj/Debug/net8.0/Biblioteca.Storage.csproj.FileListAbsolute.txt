@@ -13,3 +13,4 @@
 /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/refint/Biblioteca.Storage.dll
 /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.pdb
 /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/ref/Biblioteca.Storage.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Storage/obj/Debug/net8.0/Biblioteca.Storage.sourcelink.json

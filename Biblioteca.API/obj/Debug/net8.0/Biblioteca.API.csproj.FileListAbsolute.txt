@@ -24,3 +24,4 @@
 /home/mariadantas/BibliotecaTcc/Biblioteca.API/obj/Debug/net8.0/Biblioteca.API.pdb
 /home/mariadantas/BibliotecaTcc/Biblioteca.API/obj/Debug/net8.0/Biblioteca.API.genruntimeconfig.cache
 /home/mariadantas/BibliotecaTcc/Biblioteca.API/obj/Debug/net8.0/ref/Biblioteca.API.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.API/obj/Debug/net8.0/Biblioteca.API.sourcelink.json

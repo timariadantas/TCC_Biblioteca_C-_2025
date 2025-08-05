@@ -10,3 +10,4 @@
 /home/mariadantas/BibliotecaTcc/Biblioteca.Domain/obj/Debug/net8.0/refint/Biblioteca.Domain.dll
 /home/mariadantas/BibliotecaTcc/Biblioteca.Domain/obj/Debug/net8.0/Biblioteca.Domain.pdb
 /home/mariadantas/BibliotecaTcc/Biblioteca.Domain/obj/Debug/net8.0/ref/Biblioteca.Domain.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Domain/obj/Debug/net8.0/Biblioteca.Domain.sourcelink.json

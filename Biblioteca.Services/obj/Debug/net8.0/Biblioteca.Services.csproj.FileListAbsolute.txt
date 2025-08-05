@@ -15,3 +15,4 @@
 /home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/refint/Biblioteca.Services.dll
 /home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.pdb
 /home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/ref/Biblioteca.Services.dll
+/home/mariadantas/BibliotecaTcc/Biblioteca.Services/obj/Debug/net8.0/Biblioteca.Services.sourcelink.json

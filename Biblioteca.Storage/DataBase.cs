@@ -3,7 +3,7 @@ namespace Biblioteca.Storage;
 
 public static class DataBase
 {
-    private const string CONNECTION_STRING = "Host=;Username=--;Password=--;Database=--";
+    private const string CONNECTION_STRING = "Host=localhost;Username=seu_usuario;Password=sua_senha;Database=seubanco";
 
     public static NpgsqlConnection GetConnection()
     {
