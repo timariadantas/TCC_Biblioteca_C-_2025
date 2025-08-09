@@ -485,3 +485,77 @@ POSITION: 8
     File: scan.l
     Line: 1244
     Routine: scanner_yyerror
+Npgsql.PostgresException (0x80004005): 42703: column "created_ate" does not exist
+
+POSITION: 107
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery()
+   at Biblioteca.Storage.InventoryStorage.Create(Inventory inventory) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 26
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "created_ate" does not exist
+    Hint: Perhaps you meant to reference the column "inventory.created_at".
+    Position: 107
+    File: parse_relation.c
+    Line: 3729
+    Routine: errorMissingColumn
+Npgsql.PostgresException (0x80004005): 42703: column "created_ate" does not exist
+
+POSITION: 107
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery()
+   at Biblioteca.Storage.InventoryStorage.Create(Inventory inventory) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 26
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "created_ate" does not exist
+    Hint: Perhaps you meant to reference the column "inventory.created_at".
+    Position: 107
+    File: parse_relation.c
+    Line: 3729
+    Routine: errorMissingColumn
+System.InvalidOperationException: Connection already open
+   at Npgsql.ThrowHelper.ThrowInvalidOperationException(String message)
+   at Npgsql.NpgsqlConnection.CheckClosed()
+   at Npgsql.NpgsqlConnection.Open(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Biblioteca.Storage.InventoryStorage.Create(Inventory inventory) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 16
+System.InvalidOperationException: Connection already open
+   at Npgsql.ThrowHelper.ThrowInvalidOperationException(String message)
+   at Npgsql.NpgsqlConnection.CheckClosed()
+   at Npgsql.NpgsqlConnection.Open(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Biblioteca.Storage.InventoryStorage.Create(Inventory inventory) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 16
+System.InvalidOperationException: Connection already open
+   at Npgsql.ThrowHelper.ThrowInvalidOperationException(String message)
+   at Npgsql.NpgsqlConnection.CheckClosed()
+   at Npgsql.NpgsqlConnection.Open(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Biblioteca.Storage.InventoryStorage.Create(Inventory inventory) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 16
+System.InvalidOperationException: Connection already open
+   at Npgsql.ThrowHelper.ThrowInvalidOperationException(String message)
+   at Npgsql.NpgsqlConnection.CheckClosed()
+   at Npgsql.NpgsqlConnection.Open(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Biblioteca.Storage.InventoryStorage.GetById(String id) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 106
+System.InvalidOperationException: Connection already open
+   at Npgsql.ThrowHelper.ThrowInvalidOperationException(String message)
+   at Npgsql.NpgsqlConnection.CheckClosed()
+   at Npgsql.NpgsqlConnection.Open(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Biblioteca.Storage.InventoryStorage.GetById(String id) in /home/mariadantas/BibliotecaTcc/Biblioteca.Storage/InventoryStorage.cs:line 106
