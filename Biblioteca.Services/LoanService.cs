@@ -4,68 +4,95 @@ using NUlid;
 
 namespace Biblioteca.Services;
 
-    public class LoanService
-    {
-        private readonly LoanStorage _loanStorage;
-
-        public LoanService()
-        {
-            _loanStorage = new LoanStorage();
-        }
-
-        public void CreateLoan(Loan loan)
-        {
-            loan.Id = Ulid.NewUlid().ToString();
-            loan.CreatedAt = DateTime.UtcNow;
-            loan.UpdatedAt = DateTime.UtcNow;
-
-            _loanStorage.Create(loan);
-        }
-
-        public Loan GetLoanById(string id)
+public class LoanService
 {
-    if (string.IsNullOrWhiteSpace(id))
-        throw new ArgumentException("O ID do empréstimo não pode ser vazio.");
+    private readonly LoanStorage _loanStorage;
 
-    var loan = _loanStorage.GetById(id);
+    public LoanService()
+    {
+        _loanStorage = new LoanStorage();
+    }
 
-    if (loan == null)
-        throw new Exception($"Empréstimo com ID '{id}' não encontrado.");
+    public void CreateLoan(Loan loan)
+    {
+        loan.Id = Ulid.NewUlid().ToString();
+        loan.CreatedAt = DateTime.UtcNow;
+        loan.UpdatedAt = DateTime.UtcNow;
 
-    return loan;
-}
+        _loanStorage.Create(loan);
+    }
+
+    public Loan GetLoanById(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+            throw new ArgumentException("O ID do empréstimo não pode ser vazio.");
+
+        var loan = _loanStorage.GetById(id);
+
+        if (loan == null)
+            throw new Exception($"Empréstimo com ID '{id}' não encontrado.");
+
+        return loan;
+    }
 
 
-        public List<Loan> ListLoans()
+    public List<Loan> ListLoans()
+    {
+        return _loanStorage.GetAll();
+    }
+
+    public void UpdateLoan(Loan loan)
+    {
+        var existingLoan = _loanStorage.GetById(loan.Id);
+        if (existingLoan == null)
         {
-            return _loanStorage.GetAll();
+            throw new Exception("Empréstimo não encontrado.");
         }
 
-        public void UpdateLoan(Loan loan)
-        {
-            var existingLoan = _loanStorage.GetById(loan.Id);
-            if (existingLoan == null)
-            {
-                throw new Exception("Empréstimo não encontrado.");
-            }
+        loan.UpdatedAt = DateTime.UtcNow;
+        _loanStorage.Update(loan);
+    }
 
-            loan.UpdatedAt = DateTime.UtcNow;
-            _loanStorage.Update(loan);
+    public void DeleteLoan(string id)
+    {
+        var existingLoan = _loanStorage.GetById(id);
+        if (existingLoan == null)
+        {
+            throw new Exception("Empréstimo não encontrado.");
         }
 
-        public void DeleteLoan(string id)
-        {
-            var existingLoan = _loanStorage.GetById(id);
-            if (existingLoan == null)
-            {
-                throw new Exception("Empréstimo não encontrado.");
-            }
-
-            _loanStorage.Delete(id);
-        }
+        _loanStorage.Delete(id);
+    }
 
     public void Add(Loan loan)
     {
         throw new NotImplementedException();
     }
+
+    //--> Registra a devolução (usa o metódo transacional do storage ..)
+
+    public void returnLoan(string loanId)
+    {
+        if (string.IsNullOrWhiteSpace(loanId)) throw new ArgumentException("ID inválido.");
+        _loanStorage.ReturnLoanAndRestock(loanId, DateTime.UtcNow);
+    }
+
+    //--> Empréstimo por cliente
+
+    public List<(Loan loan, bool isOverdue)> GetLoansByClientWithOverdue(string clientId)
+{
+    var loans = _loanStorage.GetLoansByClient(clientId);
+    var today = DateTime.Now.Date;
+
+    var list = loans.Select(loan =>
+    {
+        bool isOverdue = loan.Status != "Devolvido" && loan.DueDate.Date < today;
+        return (loan, isOverdue);
+    }).ToList();
+
+    return list;
 }
+
+}
+
+
