@@ -82,7 +82,7 @@ public class LoanApi
             loan.CreatedAt = DateTime.Now;
             loan.UpdatedAt = DateTime.Now;
 
-              _loanService.CreateLoan(loan);
+            _loanService.CreateLoan(loan);
             Console.WriteLine("Empréstimo cadastrado com sucesso!");
         }
         catch (Exception ex)
@@ -134,7 +134,7 @@ public class LoanApi
             else
                 loan.ReturnDate = DateTime.Parse(returnInput);
 
-            
+
             Console.Write("Status (Aberto/Fechado): ");
             var statusInput = Console.ReadLine();
             if (statusInput is null)
@@ -168,5 +168,57 @@ public class LoanApi
             Console.WriteLine($"Erro: {ex.Message}");
         }
     }
+
+    public void Devolver()
+    {
+        Console.Write("ID do empréstimo: ");
+        var id = Console.ReadLine()?.Trim();
+
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            Console.WriteLine("ID Inválido.");
+            return;
+        }
+        try
+        {
+            _loanService.returnLoan(id);
+            Console.WriteLine("Devolução registrada com sucesso.");
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erro ao registra devolução: " + ex.Message);
+        }
+
+    }
+    
+    public void RelatorioEmprestimosPorCliente()
+{
+    Console.Write("Informe o ID do Cliente: ");
+    var clientId = Console.ReadLine();
+
+    try
+    {
+        var loansWithStatus = _loanService.GetLoansByClientWithOverdue(clientId!);
+
+        if (loansWithStatus.Count == 0)
+        {
+            Console.WriteLine("Nenhum empréstimo encontrado para este cliente.");
+            return;
+        }
+
+        Console.WriteLine($"\nEmpréstimos do cliente {clientId}:");
+        foreach (var (loan, isOverdue) in loansWithStatus)
+        {
+            string atraso = isOverdue ? " (ATRASADO!)" : "";
+            Console.WriteLine($"ID: {loan.Id} | Item: {loan.InventoryId} | Devolução: {loan.DueDate:dd/MM/yyyy} | Status: {loan.Status}{atraso}");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Erro: {ex.Message}");
+    }
+}
+
 }
 
