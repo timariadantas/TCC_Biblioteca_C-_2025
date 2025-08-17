@@ -1,21 +1,13 @@
 ﻿using Npgsql;
+
 namespace Biblioteca.Storage;
-// Usando boas práticas de Singleton ,, garante que uma única instância da classe durante a execuçao do programa.
-// Singleton não deve ser alterado por herança.
+
 public sealed class DataBase
 {
     private static DataBase? _instance;
     private static readonly object _lock = new object();
-    private readonly NpgsqlConnection _connection;
 
-    private DataBase()
-    {
-        const string CONNECTION_STRING =
-        "host=localhost;Username=--;Password=--;Database=--";
-
-        _connection = new NpgsqlConnection(CONNECTION_STRING);
-        _connection.Open();
-    }
+    private DataBase() { }
 
     public static DataBase Instance
     {
@@ -25,7 +17,6 @@ public sealed class DataBase
             {
                 if (_instance == null)
                     _instance = new DataBase();
-
                 return _instance;
             }
         }
@@ -33,14 +24,16 @@ public sealed class DataBase
 
     public NpgsqlConnection GetConnection()
     {
-        if (_connection.State != System.Data.ConnectionState.Open)
-            _connection.Open();
+        const string CONNECTION_STRING =
+            "host=localhost;Username=usuario;Password=senha;Database=banco";
 
-        return _connection;
+        var conn = new NpgsqlConnection(CONNECTION_STRING);
+        conn.Open();
+        return conn; // retorna uma conexão nova a cada chamada
     }
 }
 
+// O Singleton deve ser apenas para a classe DataBase, e cada chamada de GetConnection() deve criar uma conexão nova e aberta.
 // _instance → guarda a única instância do DataBase.
 //_lock → usado para evitar que duas threads criem duas instâncias ao mesmo tempo (thread safety).
-//_connection → a conexão aberta com o PostgreSQL.
 // Esse duplo if (_instance == null) é chamado Double-Checked Locking — evita criar duas instâncias por acidente.
