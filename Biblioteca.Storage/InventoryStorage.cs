@@ -12,7 +12,7 @@ public class InventoryStorage
     {
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
             var cmd = new NpgsqlCommand(@"
             INSERT INTO inventory (id, created_at, updated_at, catalog_id, quantity, shelf) VALUES (@id, @created_at, @updated_at, @catalog_id, @quantity, @shelf)", conn);
 
@@ -43,7 +43,7 @@ public class InventoryStorage
     {
         var inventories = new List<Inventory>();
 
-        using var conn = DataBase.GetConnection();
+        using var conn = DataBase.Instance.GetConnection();
 
         var cmd = new NpgsqlCommand("SELECT * FROM inventory", conn);
         using var reader = cmd.ExecuteReader();
@@ -67,7 +67,7 @@ public class InventoryStorage
 
     public void Update(Inventory inventory)
     {
-        using var conn = DataBase.GetConnection();
+        using var conn = DataBase.Instance.GetConnection();
 
 
         var cmd = new NpgsqlCommand(@"
@@ -89,7 +89,7 @@ public class InventoryStorage
 
     public void Delete(string id)
     {
-        using var conn = DataBase.GetConnection();
+        using var conn = DataBase.Instance.GetConnection();
 
 
         var cmd = new NpgsqlCommand("DELETE FROM inventory WHERE id = @id", conn);
@@ -102,7 +102,7 @@ public class InventoryStorage
     {
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
             var cmd = new NpgsqlCommand(
                 "SELECT id, catalog_id, created_at, updated_at, quantity, shelf " +

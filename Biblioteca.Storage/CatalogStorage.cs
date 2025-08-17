@@ -9,7 +9,7 @@ public class CatalogStorage
     {
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
             var cmd = new NpgsqlCommand("INSERT INTO catalog (id , created_at, updated_at, title, author, year, rev, publisher_id, pages, synopsis, language_id, is_foreign) VALUES (@id, @created_at, @updated_at, @title, @author, @year, @rev, @publisher_id, @pages, @synopsis, @language_id, @is_foreign)", conn);
 
@@ -44,7 +44,7 @@ public class CatalogStorage
 
     var catalogs = new List<Catalog>();
 
-    using var conn = DataBase.GetConnection();
+    using var conn = DataBase.Instance.GetConnection();
     var cmd = new NpgsqlCommand("SELECT id, created_at, updated_at, title, author, year, rev, publisher_id, pages, synopsis, language_id, is_foreign FROM catalog", conn);
     using var reader = cmd.ExecuteReader();
 
@@ -77,7 +77,7 @@ public class CatalogStorage
 
     public void Update(Catalog catalog)
     {
-        using var conn = DataBase.GetConnection();
+        using var conn = DataBase.Instance.GetConnection();
         var cmd = new NpgsqlCommand(@"
             UPDATE catalog SET 
                 updated_at = NOW(),
@@ -108,7 +108,7 @@ public class CatalogStorage
 
     public void Delete(string id)
     {
-        using var conn = DataBase.GetConnection();
+        using var conn = DataBase.Instance.GetConnection();
         var cmd = new NpgsqlCommand("DELETE FROM catalog WHERE id = @id", conn);
         cmd.Parameters.AddWithValue("id", id);
         cmd.ExecuteNonQuery();

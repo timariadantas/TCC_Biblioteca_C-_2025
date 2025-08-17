@@ -10,7 +10,7 @@ public class ClientStorage
     {
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
             Console.WriteLine("Conexão aberta para inserir dados");
             var cmd = new NpgsqlCommand("INSERT INTO client (id, created_at, updated_at, name, email, phone) VALUES (@id, @created, @updated, @name, @email, @phone)", conn);
 
@@ -39,7 +39,7 @@ public class ClientStorage
 
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
             var cmd = new NpgsqlCommand("SELECT id, created_at, updated_at, name, email, phone FROM public.client", conn);
 
             var reader = cmd.ExecuteReader();
@@ -74,7 +74,7 @@ public class ClientStorage
     {
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
             var cmd = new NpgsqlCommand(
                 @"UPDATE client
                 SET updated_at = @updated, name = @name, email = @email, phone = @phone
@@ -105,7 +105,7 @@ public class ClientStorage
     {
         try
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
             var cmd = new NpgsqlCommand("DELETE FROM client WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", clientId);

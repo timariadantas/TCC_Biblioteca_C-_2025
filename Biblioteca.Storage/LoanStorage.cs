@@ -19,7 +19,7 @@ namespace Biblioteca.Storage
     {
         public void Create(Loan loan)
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
 
             var cmd = new NpgsqlCommand(@"
@@ -45,7 +45,7 @@ namespace Biblioteca.Storage
         {
             var loans = new List<Loan>();
 
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
 
             var cmd = new NpgsqlCommand("SELECT * FROM loan", conn);
@@ -72,7 +72,7 @@ namespace Biblioteca.Storage
 
         public Loan? GetById(string id)
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
 
             var cmd = new NpgsqlCommand("SELECT * FROM loan WHERE id = @id", conn);
@@ -101,7 +101,7 @@ namespace Biblioteca.Storage
 
         public void Update(Loan loan)
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
 
             var cmd = new NpgsqlCommand(@"
@@ -129,7 +129,7 @@ namespace Biblioteca.Storage
 
         public void Delete(string id)
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
 
             var cmd = new NpgsqlCommand("DELETE FROM loan WHERE id = @id", conn);
@@ -143,7 +143,7 @@ namespace Biblioteca.Storage
 
         public void ReturnLoanAndRestock(string loanId, DateTime? returnDate = null)
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
             if (conn.State != ConnectionState.Open) conn.Open();
 
             using var tx = conn.BeginTransaction();
@@ -217,7 +217,7 @@ namespace Biblioteca.Storage
 
         public void ListActiveLoans()
         {
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
 
             var sql = @"
             SELECT  id, client_id, inventory_id, status, loan_date
@@ -246,7 +246,7 @@ namespace Biblioteca.Storage
         {
             var loans = new List<Loan>();
 
-            using var conn = DataBase.GetConnection();
+            using var conn = DataBase.Instance.GetConnection();
             
 
             var sql = @"
