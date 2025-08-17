@@ -91,7 +91,7 @@ public class LoanApi
         }
     }
 
-    private void Listar()
+    public void Listar()
     {
         try
         {
@@ -181,7 +181,7 @@ public class LoanApi
         }
         try
         {
-            _loanService.returnLoan(id);
+            _loanService.ReturnLoan(id);
             Console.WriteLine("Devolução registrada com sucesso.");
 
         }
@@ -191,34 +191,53 @@ public class LoanApi
         }
 
     }
-    
+
     public void RelatorioEmprestimosPorCliente()
-{
-    Console.Write("Informe o ID do Cliente: ");
-    var clientId = Console.ReadLine();
-
-    try
     {
-        var loansWithStatus = _loanService.GetLoansByClientWithOverdue(clientId!);
+        Console.Write("Informe o ID do Cliente: ");
+        var clientId = Console.ReadLine();
 
-        if (loansWithStatus.Count == 0)
+        try
         {
-            Console.WriteLine("Nenhum empréstimo encontrado para este cliente.");
-            return;
+            var loansWithStatus = _loanService.GetLoansByClientWithOverdue(clientId!);
+
+            if (loansWithStatus.Count == 0)
+            {
+                Console.WriteLine("Nenhum empréstimo encontrado para este cliente.");
+                return;
+            }
+
+            Console.WriteLine($"\nEmpréstimos do cliente {clientId}:");
+            foreach (var (loan, isOverdue) in loansWithStatus)
+            {
+                string atraso = isOverdue ? " (ATRASADO!)" : "";
+                Console.WriteLine($"ID: {loan.Id} | Item: {loan.InventoryId} | Devolução: {loan.DueDate:dd/MM/yyyy} | Status: {loan.Status}{atraso}");
+            }
         }
-
-        Console.WriteLine($"\nEmpréstimos do cliente {clientId}:");
-        foreach (var (loan, isOverdue) in loansWithStatus)
+        catch (Exception ex)
         {
-            string atraso = isOverdue ? " (ATRASADO!)" : "";
-            Console.WriteLine($"ID: {loan.Id} | Item: {loan.InventoryId} | Devolução: {loan.DueDate:dd/MM/yyyy} | Status: {loan.Status}{atraso}");
+            Console.WriteLine($"Erro: {ex.Message}");
         }
     }
-    catch (Exception ex)
+
+public void RelatorioEmprestimosAtrasados()
+{
+    var overdueLoans = _loanService.GetOverdueLoans();
+
+    if (!overdueLoans.Any())
     {
-        Console.WriteLine($"Erro: {ex.Message}");
+        Console.WriteLine("Não há empréstimos atrasados no momento.");
+        return;
+    }
+
+    Console.WriteLine("\n--- Empréstimos Atrasados ---");
+    foreach (var (loan, clientId) in overdueLoans)
+    {
+        Console.WriteLine($"ID: {loan.Id} | Cliente: {clientId} | Item: {loan.InventoryId} | " +
+                          $"Data Empréstimo: {loan.LoanDate:dd/MM/yyyy} | Data Devolução: {loan.DueDate:dd/MM/yyyy} | Status: {loan.Status}");
     }
 }
+
 
 }
 
