@@ -8,7 +8,6 @@ var menu = new Menu();
 var catalogApi = new CatalogApi();
 var inventoryApi = new InventoryApi(new InventoryService());
 var loanApi = new LoanApi(new LoanService());
-var ListClient = new LoanStorage();
 
 while (true)
 {
@@ -19,7 +18,8 @@ while (true)
     Console.WriteLine("4 - Gerenciar Emprestimo ");
     Console.WriteLine("5 - Devolver");
     Console.WriteLine("6 - Listar Cliente");
-    Console.WriteLine("7 - Relatório");
+    Console.WriteLine("7 - Relatório Por Cliente");
+    Console.WriteLine("8 - Relatório Por Cliente atrasados");
 
     Console.WriteLine("0 - Sair");
 
@@ -44,11 +44,15 @@ while (true)
             loanApi.Devolver();
             break;
             case "6":
-            ListClient.ListActiveLoans();
+            loanApi.Listar();
             break;
             case "7":
             loanApi.RelatorioEmprestimosPorCliente();
             break;
+            case"8":
+            loanApi.RelatorioEmprestimosAtrasados();
+            break;
+
             case "0":
             return;
         default:
