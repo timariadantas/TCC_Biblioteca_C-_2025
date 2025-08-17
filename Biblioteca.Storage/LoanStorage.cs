@@ -1,7 +1,9 @@
 using System.Data;
 using System.Data.Common;
+using System.Linq.Expressions;
 using Biblioteca.Domain;
 using Npgsql;
+using Npgsql.Replication.PgOutput.Messages;
 
 namespace Biblioteca.Storage
 {
@@ -20,25 +22,39 @@ namespace Biblioteca.Storage
         public void Create(Loan loan)
         {
             using var conn = DataBase.Instance.GetConnection();
+            if (conn.State != ConnectionState.Open) conn.Open();
 
+            using var tx = conn.BeginTransaction();
 
-            var cmd = new NpgsqlCommand(@"
+            try
+            {
+                var cmd = new NpgsqlCommand(@"
                 INSERT INTO loan 
                 (id, client_id, inventory_id, loan_date, due_date, return_date, status, created_at, updated_at) 
                 VALUES 
                 (@id, @client_id, @inventory_id, @loan_date, @due_date, @return_date, @status, @created_at, @updated_at)", conn);
 
-            cmd.Parameters.AddWithValue("id", loan.Id);
-            cmd.Parameters.AddWithValue("client_id", loan.ClientId);
-            cmd.Parameters.AddWithValue("inventory_id", loan.InventoryId);
-            cmd.Parameters.AddWithValue("loan_date", loan.LoanDate);
-            cmd.Parameters.AddWithValue("due_date", loan.DueDate);
-            cmd.Parameters.AddWithValue("return_date", (object?)loan.ReturnDate ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("status", loan.Status ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("created_at", loan.CreatedAt ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("updated_at", loan.UpdatedAt ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("id", loan.Id);
+                cmd.Parameters.AddWithValue("client_id", loan.ClientId);
+                cmd.Parameters.AddWithValue("inventory_id", loan.InventoryId);
+                cmd.Parameters.AddWithValue("loan_date", loan.LoanDate);
+                cmd.Parameters.AddWithValue("due_date", loan.DueDate);
+                cmd.Parameters.AddWithValue("return_date", (object?)loan.ReturnDate ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("status", loan.Status ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("created_at", loan.CreatedAt ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("updated_at", loan.UpdatedAt ?? (object)DBNull.Value);
 
-            cmd.ExecuteNonQuery();
+                cmd.Transaction = tx;
+
+                cmd.ExecuteNonQuery();
+
+                tx.Commit();
+            }
+            catch
+            {
+                tx.Rollback();
+                throw;
+            }
         }
 
         public List<Loan> GetAll()
@@ -102,9 +118,14 @@ namespace Biblioteca.Storage
         public void Update(Loan loan)
         {
             using var conn = DataBase.Instance.GetConnection();
+            if (conn.State != ConnectionState.Open) conn.Open();
 
+            var tx = conn.BeginTransaction();
 
-            var cmd = new NpgsqlCommand(@"
+            try
+            {
+
+                var cmd = new NpgsqlCommand(@"
                 UPDATE loan SET
                     client_id = @client_id,
                     inventory_id = @inventory_id,
@@ -115,16 +136,27 @@ namespace Biblioteca.Storage
                     updated_at = @updated_at
                 WHERE id = @id", conn);
 
-            cmd.Parameters.AddWithValue("id", loan.Id);
-            cmd.Parameters.AddWithValue("client_id", loan.ClientId);
-            cmd.Parameters.AddWithValue("inventory_id", loan.InventoryId);
-            cmd.Parameters.AddWithValue("loan_date", loan.LoanDate);
-            cmd.Parameters.AddWithValue("due_date", loan.DueDate);
-            cmd.Parameters.AddWithValue("return_date", (object?)loan.ReturnDate ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("status", loan.Status);
-            cmd.Parameters.AddWithValue("updated_at", loan.UpdatedAt ?? DateTime.UtcNow);
+                cmd.Parameters.AddWithValue("id", loan.Id);
+                cmd.Parameters.AddWithValue("client_id", loan.ClientId);
+                cmd.Parameters.AddWithValue("inventory_id", loan.InventoryId);
+                cmd.Parameters.AddWithValue("loan_date", loan.LoanDate);
+                cmd.Parameters.AddWithValue("due_date", loan.DueDate);
+                cmd.Parameters.AddWithValue("return_date", (object?)loan.ReturnDate ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("status", loan.Status);
+                cmd.Parameters.AddWithValue("updated_at", loan.UpdatedAt ?? DateTime.UtcNow);
 
-            cmd.ExecuteNonQuery();
+                cmd.Transaction = tx;
+
+                cmd.ExecuteNonQuery();
+
+                tx.Commit();
+
+            }
+            catch
+            {
+                tx.Rollback();
+                throw;
+            }
         }
 
         public void Delete(string id)
@@ -247,7 +279,7 @@ namespace Biblioteca.Storage
             var loans = new List<Loan>();
 
             using var conn = DataBase.Instance.GetConnection();
-            
+
 
             var sql = @"
         SELECT id, client_id, inventory_id, loan_date, due_date, return_date, status, created_at, updated_at
@@ -281,3 +313,6 @@ namespace Biblioteca.Storage
         }
     }
 }
+
+// transaction quando precisar garantir que várias operações sejam atômicas.
+//Sempre que uma operação envolver mais de uma tabela ou mais de um comando que precise acontecer juntos → usar (BeginTransaction + Commit/Rollback)
