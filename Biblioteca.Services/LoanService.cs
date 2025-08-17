@@ -35,7 +35,6 @@ public class LoanService
         return loan;
     }
 
-
     public List<Loan> ListLoans()
     {
         return _loanStorage.GetAll();
@@ -45,9 +44,7 @@ public class LoanService
     {
         var existingLoan = _loanStorage.GetById(loan.Id);
         if (existingLoan == null)
-        {
             throw new Exception("Empréstimo não encontrado.");
-        }
 
         loan.UpdatedAt = DateTime.UtcNow;
         _loanStorage.Update(loan);
@@ -57,42 +54,45 @@ public class LoanService
     {
         var existingLoan = _loanStorage.GetById(id);
         if (existingLoan == null)
-        {
             throw new Exception("Empréstimo não encontrado.");
-        }
 
         _loanStorage.Delete(id);
     }
 
-    public void Add(Loan loan)
+    //--> Registra a devolução (usa o método transacional do storage)
+    public void ReturnLoan(string loanId)
     {
-        throw new NotImplementedException();
-    }
+        if (string.IsNullOrWhiteSpace(loanId))
+            throw new ArgumentException("ID inválido.");
 
-    //--> Registra a devolução (usa o metódo transacional do storage ..)
-
-    public void returnLoan(string loanId)
-    {
-        if (string.IsNullOrWhiteSpace(loanId)) throw new ArgumentException("ID inválido.");
         _loanStorage.ReturnLoanAndRestock(loanId, DateTime.UtcNow);
     }
 
-    //--> Empréstimo por cliente
-
+    //--> Relatório de Empréstimo por cliente
     public List<(Loan loan, bool isOverdue)> GetLoansByClientWithOverdue(string clientId)
-{
-    var loans = _loanStorage.GetLoansByClient(clientId);
-    var today = DateTime.Now.Date;
-
-    var list = loans.Select(loan =>
     {
-        bool isOverdue = loan.Status != "Devolvido" && loan.DueDate.Date < today;
-        return (loan, isOverdue);
-    }).ToList();
+        if (string.IsNullOrWhiteSpace(clientId))
+            throw new ArgumentException("O ID do cliente não pode ser vazio.");
 
-    return list;
+        var loans = _loanStorage.GetLoansByClient(clientId);
+        var today = DateTime.UtcNow.Date;
+
+        return loans.Select(loan =>
+        {
+            bool isOverdue = loan.Status != "Devolvido" && loan.DueDate.Date < today;
+            return (loan, isOverdue);
+        }).ToList();
+    }
+
+    // Relatório de empréstimos atrasados
+    public List<(Loan loan, string clientId)> GetOverdueLoans()
+    {
+        var loans = _loanStorage.GetActiveAndOverdueLoans(); // pega apenas os ativos
+        var today = DateTime.UtcNow.Date;
+
+        return loans
+            .Where(l => l.Status != "Devolvido" && l.DueDate.Date < today)
+            .Select(l => (l, l.ClientId))
+            .ToList();
+    }
 }
-
-}
-
-
