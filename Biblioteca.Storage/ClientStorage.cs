@@ -12,7 +12,7 @@ public class ClientStorage
         {
             using var conn = DataBase.Instance.GetConnection();
             Console.WriteLine("Conexão aberta para inserir dados");
-            var cmd = new NpgsqlCommand("INSERT INTO client (id, created_at, updated_at, name, email, phone) VALUES (@id, @created, @updated, @name, @email, @phone)", conn);
+            using var cmd = new NpgsqlCommand("INSERT INTO client (id, created_at, updated_at, name, email, phone) VALUES (@id, @created, @updated, @name, @email, @phone)", conn);
 
             cmd.Parameters.AddWithValue("@id", client.Id);
             cmd.Parameters.AddWithValue("@created", client.CreatedAt);
@@ -40,9 +40,9 @@ public class ClientStorage
         try
         {
             using var conn = DataBase.Instance.GetConnection();
-            var cmd = new NpgsqlCommand("SELECT id, created_at, updated_at, name, email, phone FROM public.client", conn);
+            using var cmd = new NpgsqlCommand("SELECT id, created_at, updated_at, name, email, phone FROM public.client", conn);
 
-            var reader = cmd.ExecuteReader();
+            using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 var client = new Client
@@ -75,7 +75,7 @@ public class ClientStorage
         try
         {
             using var conn = DataBase.Instance.GetConnection();
-            var cmd = new NpgsqlCommand(
+            using var cmd = new NpgsqlCommand(
                 @"UPDATE client
                 SET updated_at = @updated, name = @name, email = @email, phone = @phone
                 WHERE id = @id", conn);
@@ -107,7 +107,7 @@ public class ClientStorage
         {
             using var conn = DataBase.Instance.GetConnection();
 
-            var cmd = new NpgsqlCommand("DELETE FROM client WHERE id = @id", conn);
+            using var cmd = new NpgsqlCommand("DELETE FROM client WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", clientId);
 
             var rowsAffected = cmd.ExecuteNonQuery();
